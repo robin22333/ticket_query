@@ -11,7 +11,7 @@ import org.apache.commons.io.IOUtils;
  *
  */
 public class HttpBroker {
-	
+
 	public static String getRequest(String url,int timeOut) throws Exception{
 		URL u = new URL(url);
 		if("https".equalsIgnoreCase(u.getProtocol())){
@@ -22,7 +22,7 @@ public class HttpBroker {
 		conn.setReadTimeout(timeOut);
 		return IOUtils.toString(conn.getInputStream());
 	}
-	
+
 	public static String postRequest(String urlAddress,String args,int timeOut) throws Exception{
 		URL url = new URL(urlAddress);
 		if("https".equalsIgnoreCase(url.getProtocol())){
@@ -30,15 +30,15 @@ public class HttpBroker {
 		}
 		URLConnection u = url.openConnection();
 		u.setDoInput(true);
-        u.setDoOutput(true);
-        u.setConnectTimeout(timeOut);
-        u.setReadTimeout(timeOut);
-        OutputStreamWriter osw = new OutputStreamWriter(u.getOutputStream(), "UTF-8");
-        osw.write(args);
-        osw.flush();
-        osw.close();
-        u.getOutputStream();
+		u.setDoOutput(true);
+		u.setConnectTimeout(timeOut);
+		u.setReadTimeout(timeOut);
+		OutputStreamWriter osw = new OutputStreamWriter(u.getOutputStream(), "UTF-8");
+		osw.write(args);
+		osw.flush();
+		osw.close();
+		u.getOutputStream();
 		return IOUtils.toString(u.getInputStream());
 	}
-	
+
 }
